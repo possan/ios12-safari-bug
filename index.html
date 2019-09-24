@@ -26,7 +26,7 @@
             </p>
 
             <p>
-                <audio class="media-document audio mac" id="d" controls download
+                <audio class="media-document audio mac" id="b" controls download
                     src="working.mp3" type="audio/mpeg"></audio>
             </p>
 
@@ -68,15 +68,13 @@
                 ];
                 events.forEach(event => {
                     el.addEventListener(event, arg => {
-                    console.log(`${prefix}${event} - d=${el.duration}, p=${el.currentPosition}, s=${el.playing?'playing':'stopped'}`);
+                        console.log(`${prefix}${event} - d=${el.duration}, p=${el.currentPosition}, s=${el.playing?'playing':'stopped'}`);
                     });
                 })
             }
 
             addEventListeners(document.getElementById('a'), 'A: ');
             addEventListeners(document.getElementById('b'), 'B: ');
-            addEventListeners(document.getElementById('c'), 'C: ');
-            addEventListeners(document.getElementById('d'), 'D: ');
 
         </script>
     </body>

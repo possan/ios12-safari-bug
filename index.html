@@ -1,0 +1,56 @@
+<html>
+<body>
+    <div style="padding: 30px">
+        <h2>Buggy mp3, plays twice on ios 12.4</h2>
+        <audio class="media-document audio mac" id="a" controls download src="buggy.mp3" type="audio/mpeg"></audio>
+    </div>
+
+    <div style="padding: 30px">
+        <h2>Regular working mp3</h2>
+        <audio class="media-document audio mac" id="b" controls download src="working.mp3" type="audio/mpeg"></audio>
+    </div>
+
+    <script type="text/javascript">
+        function addEventListeners(el, prefix) {
+            var events = [
+                'abort',
+                'canplay',
+                'canplaythrough',
+                'durationchange',
+                'emptied',
+                'encrypted',
+                'ended',
+                'error',
+                'interruptbegin',
+                'interruptend',
+                'loadeddata',
+                'loadedmetadata',
+                'loadstart',
+                'mozaudioavailable',
+                'pause',
+                'play',
+                'playing',
+                'progress',
+                'ratechange',
+                'seeked',
+                'seeking',
+                'stalled',
+                'suspend',
+                'timeupdate',
+                'volumechange',
+                'waiting',
+            ];
+            events.forEach(event => {
+                el.addEventListener(event, arg => {
+                console.log(`${prefix}${event} - d=${el.duration}, p=${el.currentPosition}, s=${el.playing?'playing':'stopped'}`);
+                });
+            })
+        }
+
+        addEventListeners(document.getElementById('a'), 'A: ');
+        addEventListeners(document.getElementById('b'), 'B: ');
+
+    </script>
+</body>
+</html>
+

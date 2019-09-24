@@ -1,56 +1,102 @@
 <html>
-<body>
-    <div style="padding: 30px">
-        <h2>Buggy mp3, plays twice on ios 12.4</h2>
-        <audio class="media-document audio mac" id="a" controls download src="buggy.mp3" type="audio/mpeg"></audio>
-    </div>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body style="margin: 0; padding: 30px;">
+        <div style="max-width: 400px;">
+            <h1>iOS 12 Safari mp3 audio bug</h1>
 
-    <div style="padding: 30px">
-        <h2>Regular working mp3</h2>
-        <audio class="media-document audio mac" id="b" controls download src="working.mp3" type="audio/mpeg"></audio>
-    </div>
+            <p>
+                We noticed a weird issue for a couple of our mp3 voice recordings, that
+                it played the sound twice, and we tracked down the problem to only occur
+                in Safari on iOS.
+            </p>
 
-    <script type="text/javascript">
-        function addEventListeners(el, prefix) {
-            var events = [
-                'abort',
-                'canplay',
-                'canplaythrough',
-                'durationchange',
-                'emptied',
-                'encrypted',
-                'ended',
-                'error',
-                'interruptbegin',
-                'interruptend',
-                'loadeddata',
-                'loadedmetadata',
-                'loadstart',
-                'mozaudioavailable',
-                'pause',
-                'play',
-                'playing',
-                'progress',
-                'ratechange',
-                'seeked',
-                'seeking',
-                'stalled',
-                'suspend',
-                'timeupdate',
-                'volumechange',
-                'waiting',
-            ];
-            events.forEach(event => {
-                el.addEventListener(event, arg => {
-                console.log(`${prefix}${event} - d=${el.duration}, p=${el.currentPosition}, s=${el.playing?'playing':'stopped'}`);
-                });
-            })
-        }
+            <p>
+                Buggy mp3, from CDN, plays twice:
+            </p>
 
-        addEventListeners(document.getElementById('a'), 'A: ');
-        addEventListeners(document.getElementById('b'), 'B: ');
+            <p>
+                <audio class="media-document audio mac" id="a" controls download
+                    src="https://possan.github.io/ios12-safari-bug/buggy.mp3" type="audio/mpeg"></audio>
+            </p>
 
-    </script>
-</body>
+            <p>
+                Buggy mp3, local, plays once:
+            </p>
+
+            <p>
+                <audio class="media-document audio mac" id="a" controls download
+                    src="buggy.mp3" type="audio/mpeg"></audio>
+            </p>
+
+            <p>
+                Regular mp3, from CDN, plays once:
+            </p>
+
+            <p>
+                <audio class="media-document audio mac" id="c" controls download
+                    src="https://possan.github.io/ios12-safari-bug/working.mp3" type="audio/mpeg"></audio>
+            </p>
+
+            <p>
+                Regular mp3, local, plays once:
+            </p>
+
+            <p>
+                <audio class="media-document audio mac" id="d" controls download
+                    src="working.mp3" type="audio/mpeg"></audio>
+            </p>
+
+            <p>
+                <a href="https://possan.github.io/ios12-safari-bug/">GitHub repo</a>
+            </p>
+
+        </div>
+
+        <script type="text/javascript">
+            function addEventListeners(el, prefix) {
+                var events = [
+                    'abort',
+                    'canplay',
+                    'canplaythrough',
+                    'durationchange',
+                    'emptied',
+                    'encrypted',
+                    'ended',
+                    'error',
+                    'interruptbegin',
+                    'interruptend',
+                    'loadeddata',
+                    'loadedmetadata',
+                    'loadstart',
+                    'mozaudioavailable',
+                    'pause',
+                    'play',
+                    'playing',
+                    'progress',
+                    'ratechange',
+                    'seeked',
+                    'seeking',
+                    'stalled',
+                    'suspend',
+                    'timeupdate',
+                    'volumechange',
+                    'waiting',
+                ];
+                events.forEach(event => {
+                    el.addEventListener(event, arg => {
+                    console.log(`${prefix}${event} - d=${el.duration}, p=${el.currentPosition}, s=${el.playing?'playing':'stopped'}`);
+                    });
+                })
+            }
+
+            addEventListeners(document.getElementById('a'), 'A: ');
+            addEventListeners(document.getElementById('b'), 'B: ');
+            addEventListeners(document.getElementById('c'), 'C: ');
+            addEventListeners(document.getElementById('d'), 'D: ');
+
+        </script>
+    </body>
 </html>
 

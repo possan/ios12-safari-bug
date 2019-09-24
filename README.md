@@ -2,7 +2,7 @@
 
 We noticed a weird issue for a couple of our mp3 voice recordings, that it played the sound twice, and we tracked down the problem to only occur in Safari on iOS, and it seems to only show if the file is served from a CDN supporting [HTTP range headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests) (for example GitHub pages), if served without range header support (with `python -m SimpleHTTPServer 8000` for example), it seems to work.
 
-We first thought the files were corrupt or otherwise damaged, but looking at the files in an audio editor or looking at their metadata in `ffmpeg` or `file` doesn't seem to hint at any issues, also the `<audio/>`-tag events for both the files seems to be the same, and they're all recorded in the same batch too.
+We first thought the files were corrupt or otherwise damaged, but looking at the files in an audio editor or looking at their metadata in `ffmpeg` or `file` doesn't seem to hint at any issues, also the `<audio/>`-tag events for both the files seems to be the same, and they're all recorded in the same batch too.
 
 This repo contains a simple [html page](index.html) ([online](https://possan.github.io/ios12-safari-bug/)) that shows the problem.
 
